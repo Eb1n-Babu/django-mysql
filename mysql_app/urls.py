@@ -1,11 +1,16 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
+
 from .views import EmployeesModelView, employees_view, employees_details, EmployeesView, EmployeesDetailsView, \
     EmployeesUpdateView, EmployeesCreateView, EmployeesDeleteView, employees_create, employees_delete, employees_update, \
     employees_list, employee_details, employee_create_view, employee_update, employee_delete
 
+router = routers.DefaultRouter()
+router.register(r'employee', EmployeesModelView)
+
 urlpatterns = [
-    path('employee/',EmployeesModelView.as_view({'get':'list','post':'create'})),
-    path('employee/<int:pk>/',EmployeesModelView.as_view({'get':'retrieve','put':'update','delete':'destroy'})),
+
+    path('',include(router.urls)),
 
     path('employee/list/create/',employees_create),
     path('employee/list/',employees_view),
