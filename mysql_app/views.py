@@ -1,3 +1,5 @@
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
 from rest_framework import viewsets, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -76,4 +78,40 @@ class EmployeesDeleteView(generic.DeleteView):
     template_name = 'employees_delete.html'
     success_url = '/employee/details/'
 
+def employees_list(request):
+    employees = Employees.objects.all()
+    return render(request,'employees_list.html',{'employees':employees})
 
+def employee_details(request,pk):
+    employee = Employees.objects.get(pk=pk)
+    return render(request,'employee_details.html',{'employee':employee})
+
+def employee_create_view(request):
+    if request.method == 'POST':
+        form = EmployeesForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse("success")
+        else:
+            return HttpResponse("error")
+    else:
+        form = EmployeesForm()
+        return render(request,'employees_create.html',{'form':form})
+
+def employee_delete(request,pk):
+    employee = Employees.objects.get(pk=pk)
+    employee.delete()
+    return HttpResponse("success")
+
+def employee_update(request,pk):
+    if request.method == 'POST':
+        form = EmployeesForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse("success")
+        else:
+            return HttpResponse("error")
+
+    else:
+        form = EmployeesForm()
+        return render(request,'employees_update.html',{'form':form})
