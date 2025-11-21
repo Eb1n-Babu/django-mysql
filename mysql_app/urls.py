@@ -1,12 +1,15 @@
 from django.urls import path
-from .views import EmployeesModelView , employees_view , employees_details , EmployeesView ,EmployeesDetailsView , EmployeesUpdateView ,EmployeesCreateView ,EmployeesDeleteView
-
+from .views import EmployeesModelView , employees_view , employees_details , EmployeesView ,EmployeesDetailsView , EmployeesUpdateView ,EmployeesCreateView ,EmployeesDeleteView , employees_create,employees_delete,employees_update
 urlpatterns = [
     path('employee/',EmployeesModelView.as_view({'get':'list','post':'create'})),
     path('employee/<int:pk>/',EmployeesModelView.as_view({'get':'retrieve','put':'update','delete':'destroy'})),
 
+    path('employee/create/',employees_create),
     path('employee/list/',employees_view),
     path('employee/list/<int:pk>/',employees_details),
+    path('employee/list/<int:pk>/update/',employees_update),
+    path('employee/list/<int:pk>/delete/',employees_delete),
+
 
 
 
