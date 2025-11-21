@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    {% for employee in employees %}
+    <li><a href="{% url 'employee_details' employee.id %}">  {{employee.id}}</a>  {{employee}}</li>
+    {% endfor %}
+</div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Details</title>
+</head>
+<body>
+<div>
+    <ul>
+        <li>First Name: {{ employee.first_name }}</li>
+        <li>Last Name: {{ employee.last_name }}</li>
+        <li>Email: {{ employee.email }}</li>
+        <li>Department: {{ employee.department }}</li>
+        <li>Salary: {{ employee.salary }}</li>
+        <li>Hire Date: {{ employee.hire_date }}</li>
+        <li>Country: {{ employee.country }}</li>
+        <li>Phone: {{ employee.phone }}</li>
+        <li>Status: {{ employee.status }}</li>
+    </ul>
+    <a href="{% url 'employees_update' employee.id %}">Update</a>
+    <a href="{% url 'employees_delete' employee.id %}">deleter</a>
+</div>
+</body>
+</html>
