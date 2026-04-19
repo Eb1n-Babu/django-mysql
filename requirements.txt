@@ -1,0 +1,4 @@
+Django==6.0.4
+djangorestframework==3.16.1
+python-decouple==3.8
+serializers==0.2.4
